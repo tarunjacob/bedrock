@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/features/base.html" %}
 
 {% block page_title %}{{ _('Firefox Browser: Use Less Memory, Get More Speed') }}{% endblock %}
@@ -31,9 +33,9 @@
         <p>
         {% trans %}
           Every computer program you run takes up some memory. When too much is used,
-          your system can slooooowww down. Firefox aims for a balance &mdash; using
-          enough memory to let you browse smoothly and leaving plenty of memory to keep
-          your computer responsive.
+          your system can slooooowww down. Firefox aims for a balance — using enough
+          memory to let you browse smoothly and leaving plenty of memory to keep your
+          computer responsive.
         {% endtrans %}
         </p>
       </li>

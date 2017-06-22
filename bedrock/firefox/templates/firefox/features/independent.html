@@ -2,10 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/features/base.html" %}
 
 {% block page_title %}{{ _('Firefox, a different browser for different times. Browse free.') }}{% endblock %}
-{% block page_desc %}{{ _('Browse the Internet as it was meant to be…free, safe and accessible to all. Declare your online independence.') }}{% endblock %}
+{% block page_desc %}{{ _('Browse the Internet as it was meant to be… free, safe and accessible to all. Declare your online independence.') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/page-image-independent.jpg') }}{% endblock %}
 
 {% block page_css %}
@@ -51,7 +53,7 @@
         {% trans %}
           We believe the Internet is for people, not profit. Unlike other companies,
           we don’t sell access to your data. <em>You’re</em> in control over who sees
-          your search and browsing history. Choice— that’s what a healthy Internet is
+          your search and browsing history. Choice — that’s what a healthy Internet is
           all about!
         {% endtrans %}
         </p>

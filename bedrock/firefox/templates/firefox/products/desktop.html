@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/products/product-base.html" %}
 
 {% block page_title %}{{ _('Desktop computers meet the faster, private Firefox ') }}{% endblock %}
@@ -79,7 +81,7 @@
         <div class="feature-desc">
           <p>
           {% trans %}
-            Firefox is more than just a browser. Backed by Mozilla, a nonprofit, we’re the
+            Firefox is more than just a browser. Backed by Mozilla, a non-profit, we’re the
             only independent browser that also fights to protect your online privacy and
             keeps corporate powers in check.
           {% endtrans %}
@@ -137,7 +139,7 @@
           </p>
           <p class="card-cta">
             <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-              {{ ('Here’s how Firefox protects your privacy') }}
+              {{ _('Here’s how Firefox protects your privacy') }}
             </a>
           </p>
         </div>

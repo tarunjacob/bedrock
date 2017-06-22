@@ -4,6 +4,8 @@
 
 {% from "macros.html" import google_play_button with context %}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/products/product-base.html" %}
 
 {% block page_title %}{{ _('Fast, Free Android Browser for Tablets and Phones') }} | {{ _('Firefox') }} {% endblock %}
@@ -108,7 +110,7 @@
           </p>
           <p class="card-cta">
             <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-              {{ ('Here’s how Firefox protects your privacy') }}
+              {{ _('Here’s how Firefox protects your privacy') }}
             </a>
           </p>
         </div>

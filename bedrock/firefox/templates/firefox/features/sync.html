@@ -1,0 +1,223 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" %}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %}
+  {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+    {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
+  {% else %}
+    {{ _('Keep your Firefox in sync') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+    {{ _('Bring your Firefox bookmarks, tabs, or passwords wherever you go with Firefox Sync. Share between computers and mobile devices. Get Firefox now!') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail' %}
+  {% stylesheet 'firefox-features-sync' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-sync{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  state-default
+{% endblock %}
+
+{% block features_header_image %}
+  {{ high_res_img('firefox/features/sync-hero.png', {'class': 'hero-image', 'alt': '', 'width': '700', 'height': '390'}) }}
+{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox Sync') }}</span></h1>
+{% endblock %}
+
+{% block features_list %}
+<section>
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Sync') }}</span></h2>
+
+    <div id="sync-intro-copy-cta-wrapper">
+      <div id="sync-intro-copy">
+        {# Warning Text #}
+        <div class="show-fx-29-30 warning">
+          <p>
+            <span>{{ _('It looks like you’re running an older version of Firefox.') }}</span>
+          </p>
+        </div>
+
+        <div class="show-fx-28-older warning">
+          <p>
+            <span>{{ _('The new version of Sync only works with the latest version of Firefox') }}</span>
+          </p>
+        </div>
+
+      {% block not_fx_warning %}
+        <div class="show-not-fx warning">
+          <p>
+            <span>
+            {% if l10n_has_tag('firefox_sync_non_fx') %}
+              {{ _('Sync is just one of the great features you’ll only get with Firefox.') }}
+            {% else %}
+              {{ _('Sync is just one of the great features you’ll only get with Firefox. Discover them all!') }}
+            {% endif %}
+            </span>
+          </p>
+        </div>
+      {% endblock %}
+
+      {% block intro %}
+        <div class="show-fx-31-signed-in">
+          <h1>{{ _('Ready, Set, Sync') }}</h1>
+          <p>
+            {{ _('You’re signed up and ready to access <em>your</em> Firefox anywhere, anytime.') }}
+          </p>
+        </div>
+        <div class="show-fx-31-signed-out show-fx-29-30 show-fx-28-older show-fx-android show-not-fx show-default">
+          <h1>{{ _('Take your Web with you') }}</h1>
+          <p>
+            {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
+          </p>
+        </div>
+      {% endblock %}
+      </div>{#--/#sync-intro-copy--#}
+
+      <div id="sync-intro-cta">
+        <div class="show-fx-31-signed-in">
+          <ul class="primary-buttons">
+            <li>
+              {{ google_play_button(id='cta-android') }}
+            </li>
+            <li>
+              <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" id="cta-ios">
+                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+              </a>
+            </li>
+          </ul>
+
+          <p class="button-footer">
+            <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="ga-link" data-interaction="outbound link click">
+              {{ _('Need help?') }}
+            </a>
+          </p>
+        </div>
+
+        <div class="show-fx-31-signed-out">
+          <button class="button button-hollow" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync">
+            {{ _('Get started with Sync') }}
+          </button>
+        </div>
+
+        <div class="show-fx-29-30">
+          <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="button button-hollow" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
+            {{ _('Update your Firefox') }}
+          </a>
+        </div>
+
+        <div class="show-not-fx show-fx-28-older">
+          {{ download_firefox(button_color='button-arrow', download_location='secondary cta') }}
+        </div>
+      </div>{#--/#sync-intro-cta--#}
+    </div>{#--/#sync-intro-copy-cta-wrapper--#}
+
+    <div id="sync-intro-instructions">
+      <div class="show-fx-29-30 show-default instructions">
+        <h4>{{ _('Get started with Sync in four easy steps:') }}</h4>
+        <section>
+          <ol>
+            <li>{% trans url='https://support.mozilla.org/kb/learn-more-about-the-design-of-new-firefox' %}
+              Open the <a class="menu ga-link" data-interaction="outbound link click" href="{{ url }}#w_a-handy-new-menu">menu</a> in the top right of Firefox and select “<strong>Sign in to Sync.</strong>”
+            {% endtrans %}</li>
+            {# L10n: <strong> tags below used for font color formatting. #}
+            <li>{{ _('Click “<strong>Get started</strong>” in the tab that opens.') }}</li>
+            <li>{{ _('Enter an email address and password to “<strong>Create a Firefox Account.</strong>”') }}</li>
+            <li>{{ _('Click “<strong>Next</strong>” to get a verification sent to your email.') }}</li>
+          </ol>
+          <p>{{ _('After you check your email and click the verification link, you’ll be all set! Firefox will automatically sync in the background from then on.') }}</p>
+        </section>
+        <aside role="complimentary">
+          <ul class="unstyled">
+            <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+            <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="show-fx-28-older instructions">
+        <ul class="unstyled">
+          <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+          <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+        </ul>
+      </div>
+
+      <div class="show-fx-android instructions">
+        <h4>{{ _('How to set up Sync in five easy steps:') }}</h4>
+        <section>
+          <ol>
+              {# L10n: <strong> tags below used for font color formatting. #}
+              <li>{{ _('Tap the <strong>Menu</strong> button (either below the screen or at the top right corner of the browser).') }}</li>
+              <li>{{ _('Select <strong>Settings</strong> (you may need to tap <strong>More</strong> first).') }}</li>
+              <li>{{ _('Tap <strong>Sync</strong> and then <strong>Get Started</strong>.') }}</li>
+              <li>{{ _('The <strong>Create a Firefox Account page</strong> will open in a new tab.') }}</li>
+              <li>{{ _('Fill out the form and click <strong>Next</strong>.') }}</li>
+          </ol>
+          <p>{{ _('After you check your email and click the verification link, you’ll be ready to go! Don’t forget to connect all your other devices to get the most of Sync.') }}</p>
+        </section>
+        <aside role="complimentary">
+          <ul class="unstyled">
+            <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get more detailed instructions.') }}</a></li>
+            <li><a class="more ga-link" data-interaction="outbound link click" href="https://support.mozilla.org/kb/how-to-update-to-the-new-firefox-sync">{{ _('Using an older version of Sync?') }}</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>{#--/#sync-intro-instructions--#}
+  </div>{#--/.content--#}
+</section>
+
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+  {% block features_ul %}
+    <ul class="features-list">
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/sync/personal.jpg') }}" alt="">
+        <h3>{{ _('At home') }}</h3>
+        <p>
+          {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keeping browsing your bookmarks right on your tablet.') }}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/sync/secure.jpg') }}" alt="">
+        <h3>{{ _('At work') }}</h3>
+        <p>
+          {{ _('Stay connected to all of your important information. Sync the passwords and bookmarks that you might need to access at any time. Just like Firefox, it’s safe as can be.') }}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/sync/accessible.jpg') }}" alt="">
+        <h3>{{ _('On the go') }}</h3>
+        <p>
+          {{ _('Keep up with your favorite sites, or finish that story you started at home — wherever you go. With Sync, it’s never been easier.') }}
+        </p>
+      </li>
+    </ul>
+  {% endblock %}
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'firefox-features-sync' %}
+{% endblock %}

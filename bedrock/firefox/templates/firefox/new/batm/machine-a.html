@@ -19,7 +19,10 @@
 {% block content %}
 <main role="main">
   <section class="machine">
-    <div class="eye"><span></span></div>
+    <video id="machine" preload="auto" autoplay loop muted>
+      <source src="{{ static('img/firefox/new/batm/batm-animation.webm') }}" type="video/webm">
+      <source src="{{ static('img/firefox/new/batm/batm-animation.mp4') }}" type="video/mp4">
+    </video>
 
     <ul class="points">
       <li class="point" id="point-1">
